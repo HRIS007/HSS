@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button expand="block" (click)="StartBackroundTracking()">StartBackroundTracking</ion-button>
+  <ion-button expand="block" (click)="StopBackroundTracking()">StopBackroundTracking</ion-button>
+  <ion-button expand="block" (click)="GetGeoLocation()">GetGeoLocation</ion-button>
+  <ion-button expand="block" (click)="Clearlocation()">Clearlocation</ion-button>
+  <label for="">------------------------------------------------------------- cccccccccccc</label>
+  <ion-button expand="block" (click)="startBackgroundGeolocation()">startBackgroundGeolocation</ion-button>
+  <ion-button expand="block" (click)="stopBackgroundGeolocation()">stopBackgroundGeolocation</ion-button>
+  
+
+  <ion-list *ngFor="let loc of location">
+    <ion-item>
+      <ion-label><b>Latitued:</b>{{loc.latitude}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Longitiude:</b>{{loc.longitude}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Spped:</b>{{loc.speed}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Time:</b>{{loc.time}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <!-- <button ion-button (click)="startBackgroundGeolocation()">Start Background Geolocation</button>
+<button ion-button (click)="stopBackgroundGeolocation()">Stop Background Geolocation</button> -->
+</ion-content>

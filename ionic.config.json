@@ -1,0 +1,7 @@
+{
+  "name": "Ionic3BackgroundGeolocation",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
