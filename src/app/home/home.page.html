@@ -14,9 +14,9 @@
   <label for="">------------------------------------------------------------- cccccccccccc</label>-->
   <ion-button expand="block" (click)="startBackgroundGeolocation()">startBackgroundGeolocation</ion-button>
   <ion-button expand="block" (click)="stopBackgroundGeolocation()">stopBackgroundGeolocation</ion-button>
-  
 
-  <ion-list *ngFor="let loc of location">
+
+  <ion-list *ngFor="let loc of trackedLocations">
     <ion-item>
       <ion-label><b>Latitued:</b>{{loc.latitude}}</ion-label>
     </ion-item>
