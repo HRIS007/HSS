@@ -9,6 +9,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 })
 export class HomePage {
 
+  isTrackingEnabled = false;
   trackedLocations: Array<any> = [];
   config: BackgroundGeolocationConfig = {
     desiredAccuracy: 10,
@@ -49,11 +50,15 @@ export class HomePage {
   startBackgroundGeolocation() {
     // start recording location
     this.backgroundGeolocation.start();
+
+    this.isTrackingEnabled = true;
   }
 
   stopBackgroundGeolocation() {
     // If you wish to turn OFF background-tracking, call the #stop method.
     this.backgroundGeolocation.stop();
+
+    this.isTrackingEnabled = false;
   }
 
   showNotification(data: any) {

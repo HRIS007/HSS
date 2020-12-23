@@ -12,8 +12,10 @@
   <ion-button expand="block" (click)="GetGeoLocation()">GetGeoLocation</ion-button>
   <ion-button expand="block" (click)="Clearlocation()">Clearlocation</ion-button> 
   <label for="">------------------------------------------------------------- cccccccccccc</label>-->
-  <ion-button expand="block" (click)="startBackgroundGeolocation()">startBackgroundGeolocation</ion-button>
-  <ion-button expand="block" (click)="stopBackgroundGeolocation()">stopBackgroundGeolocation</ion-button>
+  <ion-button expand="block" [disabled]="isTrackingEnabled" (click)="startBackgroundGeolocation()">
+    startBackgroundGeolocation</ion-button>
+  <ion-button expand="block" [disabled]="!isTrackingEnabled" (click)="stopBackgroundGeolocation()">
+    stopBackgroundGeolocation</ion-button>
 
 
   <ion-list *ngFor="let loc of trackedLocations">
