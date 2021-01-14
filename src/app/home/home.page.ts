@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationEvents, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { Platform } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,6 +12,7 @@ export class HomePage {
 
   isTrackingEnabled = false;
   trackedLocations: Array<any> = [];
+  timeTrackerInterval: any;
   config: BackgroundGeolocationConfig = {
     desiredAccuracy: 10,
     stationaryRadius: 20,
@@ -23,8 +25,13 @@ export class HomePage {
 
   constructor(
     private backgroundGeolocation: BackgroundGeolocation,
-    private localNotifications: LocalNotifications
+    private localNotifications: LocalNotifications,
+    private backgroundMode: BackgroundMode,
+    private platform: Platform,
   ) {
+
+    this.initializeApp();
+
     this.backgroundGeolocation.configure(this.config)
       .then((location: BackgroundGeolocationResponse) => {
 
@@ -45,6 +52,23 @@ export class HomePage {
       this.trackedLocations.push(result);
       console.log('trackedLocations ', this.trackedLocations);
     });
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+
+      if (!this.backgroundMode.isEnabled()) {
+        this.backgroundMode.enable();
+        this.timeTracker();
+      }
+
+    });
+  }
+
+  timeTracker(): void {
+    this.timeTrackerInterval = setInterval(() => {
+      this.showNotification('test time tracker');
+    }, 5000);
   }
 
   startBackgroundGeolocation() {
